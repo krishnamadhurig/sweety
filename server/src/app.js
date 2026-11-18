@@ -3,6 +3,7 @@ const express = require('express');
 const cors = require('cors');
 
 const authRoutes = require('./routes/auth');
+const readingRoutes = require('./routes/readings');
 
 const app = express();
 
@@ -14,6 +15,7 @@ app.get('/health', (req, res) => {
 });
 
 app.use('/auth', authRoutes);
+app.use('/readings', readingRoutes);
 
 app.use((req, res) => {
   res.status(404).json({ error: 'Not found.' });
