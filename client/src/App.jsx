@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { api, getToken, setToken } from './api.js';
 import AuthForm from './components/AuthForm.jsx';
 import ReadingsPage from './components/ReadingsPage.jsx';
+import ReportsPage from './components/ReportsPage.jsx';
 
 export default function App() {
   const [user, setUser] = useState(null);
@@ -49,7 +50,7 @@ export default function App() {
               Reports
             </button>
           </nav>
-          {tab === 'readings' ? <ReadingsPage /> : <p className="card">Reports come next.</p>}
+{tab === 'readings' ? <ReadingsPage /> : <ReportsPage />}
         </>
       )}
     </div>
