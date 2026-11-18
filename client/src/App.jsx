@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react';
 import { api, getToken, setToken } from './api.js';
 import AuthForm from './components/AuthForm.jsx';
+import ReadingsPage from './components/ReadingsPage.jsx';
 
 export default function App() {
   const [user, setUser] = useState(null);
   const [checking, setChecking] = useState(Boolean(getToken()));
+  const [tab, setTab] = useState('readings');
 
   useEffect(() => {
     if (!getToken()) return;
@@ -18,6 +20,7 @@ export default function App() {
   function logout() {
     setToken(null);
     setUser(null);
+    setTab('readings');
   }
 
   if (checking) return <p className="center muted">Loading…</p>;
@@ -34,7 +37,21 @@ export default function App() {
         )}
       </header>
 
-      {!user ? <AuthForm onLoggedIn={setUser} /> : <p className="card">You are logged in. Readings come next.</p>}
+      {!user ? (
+        <AuthForm onLoggedIn={setUser} />
+      ) : (
+        <>
+          <nav className="tabs">
+            <button type="button" className={tab === 'readings' ? 'active' : ''} onClick={() => setTab('readings')}>
+              Readings
+            </button>
+            <button type="button" className={tab === 'reports' ? 'active' : ''} onClick={() => setTab('reports')}>
+              Reports
+            </button>
+          </nav>
+          {tab === 'readings' ? <ReadingsPage /> : <p className="card">Reports come next.</p>}
+        </>
+      )}
     </div>
   );
 }
