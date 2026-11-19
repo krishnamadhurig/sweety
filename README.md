@@ -5,6 +5,10 @@ and views daily, month-to-date and monthly reports.
 
 **Stack:** Node.js + Express API (MVC) · PostgreSQL · React (Vite)
 
+## Demo
+
+Screen recording: https://drive.google.com/file/d/1gvOob-ambWfAWcek69Kn8CUP28JflYfo/view?usp=sharing
+
 ## Features
 
 - Sign up and log in. Passwords are hashed with bcrypt, sessions use JWT. Users only see their own readings.
